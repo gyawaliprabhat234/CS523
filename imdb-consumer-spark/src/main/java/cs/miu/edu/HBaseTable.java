@@ -13,7 +13,10 @@ import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Put;
-
+/**
+ * @author Prabhat Gyawali
+ * @project BigDataProject
+ */
 public class HBaseTable {
 
     private final String MovieTableName;

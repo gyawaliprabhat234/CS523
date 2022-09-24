@@ -15,7 +15,10 @@ import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.util.Bytes;
-
+/**
+ * @author Prabhat Gyawali
+ * @project BigDataProject
+ */
 
 public class HBaseScanner {
     private Configuration config;
@@ -32,8 +35,26 @@ public class HBaseScanner {
         return Bytes.toString(result.getValue(Bytes.toBytes(header), Bytes.toBytes(columnHeader)));
     }
 
-    public List<Movie> fetchMoviesFromHBase() throws IOException {
+    public List<Movie> getMoviesFromScanner(ResultScanner  scanner) throws IOException {
         List<Movie> movieList = new ArrayList<>();
+        Result result = scanner.next();
+        while(result != null)  {
+            Movie movie = new Movie();
+            movie.setSeriesTitle(Bytes.toString(result.getRow()));
+            movie.setReleasedYear(getValueString(result, MoviesInfo, "releasedYear"));
+            movie.setRuntime(getValueString(result, MovieStats, "runtime"));
+            String imdbResult = getValueString(result, MovieStats, "imdbRating");
+            movie.setImdbRating(Double.parseDouble(imdbResult));
+            movie.setOverview(getValueString(result, MoviesInfo, "overview"));
+            movie.setGenre(getValueString(result, MoviesInfo, "genre"));
+            movieList.add(movie);
+            result = scanner.next();
+        }
+        return movieList;
+    }
+
+    public List<Movie> fetchMoviesFromHBase() throws IOException {
+        List<Movie> movieList;
         try (Connection connection = ConnectionFactory.createConnection(this.config)) {
             Table table = connection.getTable(TableName.valueOf(MoviesTableName));
             Scan scan = new Scan();
@@ -41,17 +62,7 @@ public class HBaseScanner {
             scan.setCaching(10000);
             scan.setMaxVersions(10);
             ResultScanner scanner = table.getScanner(scan);
-            for (Result result = scanner.next(); result != null; result = scanner.next()) {
-                Movie movie = new Movie();
-                movie.setSeriesTitle(Bytes.toString(result.getRow()));
-                movie.setReleasedYear(this.getValueString(result, MoviesInfo, "releasedYear"));
-                movie.setRuntime(this.getValueString(result, MovieStats, "runtime"));
-                String imdbResult = this.getValueString(result, MovieStats, "imdbRating");
-                movie.setImdbRating(Double.parseDouble(imdbResult));
-                movie.setOverview(this.getValueString(result, MoviesInfo, "overview"));
-                movie.setGenre(this.getValueString(result, MoviesInfo, "genre"));
-                movieList.add(movie);
-            }
+            movieList = getMoviesFromScanner(scanner);
             System.out.println(movieList);
         }
         return movieList;

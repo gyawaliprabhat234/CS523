@@ -15,7 +15,10 @@ import org.apache.spark.streaming.kafka.KafkaUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+/**
+ * @author Prabhat Gyawali
+ * @project BigDataProject
+ */
 
 public class ConsumerApplication {
 
@@ -27,7 +30,6 @@ public class ConsumerApplication {
 		SparkConf conf = new SparkConf().setAppName("kafka-consumer-spark").setMaster("local[*]");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
-		// batchDuration - The time interval at which streaming data will be divided into batches
 		JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(10000));
 
 		Map<String, String> kafkaParams = new HashMap<>();
@@ -39,7 +41,6 @@ public class ConsumerApplication {
 		System.out.println("Created Table name ["+filterParameters.getTableName()+"] in Hbase");
 		directKafkaStream.foreachRDD(rdd ->
 				{
-					System.out.println("New data arrived  " + rdd.partitions().size() + " Partitions and " + rdd.count() + " Records");
 					if (rdd.count() > 0) {
 						rdd.collect()
 								.stream()
