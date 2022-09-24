@@ -15,14 +15,17 @@ After all the data is stored in the HBase database this application is used to r
 ## Commands to start the application
 ### 1. Zookeeper Server
 bin/zookeeper-server-start.sh config/zookeeper.properties
+
 The above command is used to start the zookeeper
 
 ### 2. Kafka Server
 bin/kafka-server-start.sh config/server.properties
+
 This command is used to start the kafka server
 
 ### 3. Create Kafka Topic
 bin/kafka-topics.sh --create --topic imdb_movies --bootstrap-server localhost:9092
+
 This command is used to create the topic in kafka
 
 
