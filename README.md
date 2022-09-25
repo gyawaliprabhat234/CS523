@@ -33,10 +33,15 @@ This command is used to create the topic in kafka
 imdb-producer is an Producer application which produces the data. To run the application we can run application by importing the project into eclipse or intellij. After that we can give a build to the project and it will generate the jar file. This jar file can be run by using the below command. 
 
 java -jar imdb-producer-0.0.1-SNAPSHOT.jar {param1} {param2}
-where param1: required parameter and it is movies_file_location
-      param2: optional parameter delay of publishing each movie in topic i.e in milliseconds
+
+where 
+
+param1: required parameter and it is movies_file_location
+
+param2: optional parameter delay of publishing each movie in topic i.e in milliseconds
       
 example: java -jar imdb-producer-0.0.1-SNAPSHOT.jar '/home/cloudera/Desktop/bigdataproject/imdb_movies.csv' 50
+
 In the above example application takes the file from '/home/cloudera/Desktop/bigdataproject/imdb_movies.csv' location and publish each movie in the interval of 50ms
 
 
@@ -45,8 +50,10 @@ In the similar way, after giving the build to the consumer application it will g
 
 java -jar imdb-consumer-spark.jar {param1}  {param2}
 
-where param1: optional parameter we can pass the realease year in this param so that the movie which is released in that sepecified year is gets added in database
-      param2: optional parameter we filter the movie by genre and we can pass multiple genre in comma seperated value.
+where 
+param1: optional parameter we can pass the realease year in this param so that the movie which is released in that sepecified year is gets added in database
+
+param2: optional parameter we filter the movie by genre and we can pass multiple genre in comma seperated value.
 
 example: java -jar imdb-consumer.jar 1994 Drama,Action
 
@@ -56,6 +63,7 @@ In the above example only movies which is released in 1994 with the genre Action
 After the movies is stored in the hbase database using this application we can read the data from database and store the data into the csv file. After creating the jar file of this application we can use the below command to run the application. 
 
 java -jar imdb-hbase-sql.jar {param1}
+
 where param1: required parameter and it is movie table name in hbase database
 
 exampe: java -jar imdb-hbase-sql.jar movies
