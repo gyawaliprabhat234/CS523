@@ -1,4 +1,4 @@
-# Kafka Spark HBase
+# CS523 Big Data Technology Project
 
 ## Flow Diagram
 <div><img width="578" alt="image" src="https://user-images.githubusercontent.com/54440920/192112762-904e3450-ca69-4d83-8253-b0c93b5d272f.png"></div>
