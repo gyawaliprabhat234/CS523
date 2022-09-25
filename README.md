@@ -30,8 +30,7 @@ This command is used to create the topic in kafka
 
 
 ### 4. Running Producer Application:
-imdb-producer is an Producer application which produces the data. To run the application we can run application by importing the project into eclipse or intellij. 
-For simplicity I have created the jar file producer application which can be found in https://drive.google.com/file/d/1jd90Q8b7j1crp6A9R6t6YYa7xxEClf0g/view?usp=sharing url and after downloading the jar file by typing the command 
+imdb-producer is an Producer application which produces the data. To run the application we can run application by importing the project into eclipse or intellij. After that we can give a build to the project and it will generate the jar file. This jar file can be run by using the below command. 
 
 java -jar imdb-producer-0.0.1-SNAPSHOT.jar {param1} {param2}
 where param1: required parameter and it is movies_file_location
@@ -42,7 +41,7 @@ In the above example application takes the file from '/home/cloudera/Desktop/big
 
 
 ### 5. Running Consumer Application:
-In the similar way, The jar file can be downloaded from https://drive.google.com/file/d/1HyGUCyWWlS0CN2JCV8yMrQwUnFiC9I3F/view?usp=sharing
+In the similar way, after giving the build to the consumer application it will generate the jar file and using the command below we can run the application.
 java -jar imdb-consumer-spark.jar {param1}  {param2}
 where param1: optional parameter we can pass the realease year in this param so that the movie which is released in that sepecified year is gets added in database
       param2: optional parameter we filter the movie by genre and we can pass multiple genre in comma seperated value.
@@ -51,7 +50,7 @@ example: java -jar imdb-consumer.jar 1994 Drama,Action
 In the above example only movies which is released in 1994 with the genre Action or Drama is gets stored in the hbase database
 
 ### 6. Running imdb-hbase-sql Application:
-After the movies is stored in the hbase database using this application we can read the data from database and store the data into the csv file. The can can be found on https://drive.google.com/file/d/14I_-qPiYJa89hEPwABermKRyRyF25h7t/view?usp=sharing
+After the movies is stored in the hbase database using this application we can read the data from database and store the data into the csv file. After creating the jar file of this application we can use the below command to run the application. 
 
 java -jar imdb-hbase-sql.jar {param1}
 where param1: required parameter and it is movie table name in hbase database
