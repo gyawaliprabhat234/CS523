@@ -68,7 +68,7 @@ where param1: required parameter and it is movie table name in hbase database
 
 exampe: java -jar imdb-hbase-sql.jar movies
 
-In the above example it fetch all the data into movies table and stored it into the hdfs location i.e. hdfs://localhost/user/cloudera with the folder named as table-{movie_name i.e passed in parameter} eg for above example command it will be hdfs://localhost/user/cloudera/table-movies
+In the above example it fetch all the data from HBase movies table, create a csv file of those record and stored it into the hdfs location i.e. hdfs://localhost/user/cloudera with the folder named as table-{movie_name i.e passed in parameter} eg for above example command it will be hdfs://localhost/user/cloudera/table-movies
 
 
 
