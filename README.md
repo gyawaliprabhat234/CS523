@@ -42,11 +42,14 @@ In the above example application takes the file from '/home/cloudera/Desktop/big
 
 ### 5. Running Consumer Application:
 In the similar way, after giving the build to the consumer application it will generate the jar file and using the command below we can run the application.
+
 java -jar imdb-consumer-spark.jar {param1}  {param2}
+
 where param1: optional parameter we can pass the realease year in this param so that the movie which is released in that sepecified year is gets added in database
       param2: optional parameter we filter the movie by genre and we can pass multiple genre in comma seperated value.
 
 example: java -jar imdb-consumer.jar 1994 Drama,Action
+
 In the above example only movies which is released in 1994 with the genre Action or Drama is gets stored in the hbase database
 
 ### 6. Running imdb-hbase-sql Application:
@@ -56,6 +59,7 @@ java -jar imdb-hbase-sql.jar {param1}
 where param1: required parameter and it is movie table name in hbase database
 
 exampe: java -jar imdb-hbase-sql.jar movies
+
 In the above example it fetch all the data into movies table and stored it into the hdfs location i.e. hdfs://localhost/user/cloudera with the folder named as table-{movie_name i.e passed in parameter} eg for above example command it will be hdfs://localhost/user/cloudera/table-movies
 
 
