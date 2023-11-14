@@ -70,9 +70,6 @@ exampe: java -jar imdb-hbase-sql.jar movies
 
 In the above example it fetch all the data from HBase movies table, create a csv file of those record and stored it into the hdfs location i.e. hdfs://localhost/user/cloudera with the folder named as table-{movie_name i.e passed in parameter} eg for above example command it will be hdfs://localhost/user/cloudera/table-movies
 
-## Demo Video Link
-
-https://drive.google.com/file/d/12Tj7hAsL3su9QDXKXYnAWa8EI1FzOFhf/view?usp=sharing
 
 
 
